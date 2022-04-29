@@ -11,7 +11,7 @@ pub struct Vector3 {
     pub y: f64,
 
     /// Length along the z coordinate
-    pub z: f64
+    pub z: f64,
 }
 
 /// Implement the `Display` trait for Vector3.
@@ -44,6 +44,7 @@ impl ops::Mul<f64> for Vector3 {
         }
     }
 }
+
 impl ops::Mul<i64> for Vector3 {
     type Output = Vector3;
 
@@ -120,9 +121,9 @@ impl ops::Rem<Vector3> for Vector3 {
 
     fn rem(self, rhs: Vector3) -> Self::Output {
         Vector3 {
-            x: self.y*rhs.z - self.z*rhs.y,
-            y: self.z*rhs.x - self.x*rhs.z,
-            z: self.x*rhs.y - self.y*rhs.x,
+            x: self.y * rhs.z - self.z * rhs.y,
+            y: self.z * rhs.x - self.x * rhs.z,
+            z: self.x * rhs.y - self.y * rhs.x,
         }
     }
 }
@@ -151,16 +152,18 @@ impl Vector3 {
         }
     }
 
+    /// #### Equivalent to the `%` operator when used between two vectors.
     /// Returns the vector product of this vector and the given one.
-    /// ## Equivalent to the `%` operator when used between two vectors.
     pub fn vector_product(self, vector: Vector3) -> Vector3 {
-        Vector3 {x: self.y * vector.z - self.z * vector.y,
-                 y: self.z * vector.x - self.x * vector.z,
-                 z: self.x * vector.y - self.y * vector.x}
+        Vector3 {
+            x: self.y * vector.z - self.z * vector.y,
+            y: self.z * vector.x - self.x * vector.z,
+            z: self.x * vector.y - self.y * vector.x,
+        }
     }
 
+    /// #### Equivalent to the `*` operator when used between two vectors.
     /// Returns the scalar product of this vector and the given one.
-    /// ## Equivalent to the `*` operator when used between two vectors.
     pub fn scalar_product(self, vector: Vector3) -> f64 {
         self.x * vector.x + self.y * vector.y + self.z * vector.z
     }
